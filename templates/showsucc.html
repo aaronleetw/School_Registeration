@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/static/project.css">
+    <title>八平學生進校登記系統</title>
+</head>
+
+<body>
+    <h1>八平學生進校登記系統</h1>
+    <h2>成功！請稍後跳轉畫面...<a href="/admin">無法跳轉？點這裡</a></h2>
+    <script>
+        (function () {
+            var form = document.createElement('form');
+            document.body.appendChild(form);
+            form.method = 'post';
+            form.action = '/admin';
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'password';
+            input.value = '{{ password }}';
+            form.appendChild(input);
+            setTimeout(function () {
+                form.submit();
+            }, 2000);
+        })();
+    </script>
+</body>
+
+</html>

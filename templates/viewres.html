@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>八平學生進校登記系統</title>
+    <link rel="icon" href='/static/logo.png' />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href='/static/project.css' />
+</head>
+
+<body>
+    <div style="width:100%;">
+        <h1>八平學生進校登記系統</h1>
+        <h2>目前登入：{{ number }}號 <a href="/">登出</a></h2>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col border left">
+            {% if data['status'] == 'self-pickup' %}
+            <h2>種類：自行拿取</h2>
+            {% if data['time'] == 'early' %}
+            <h2>時段：8/11 星期三 10:00 ~ 10:30</h2>
+            {% else %}
+            <h2>時段：8/11 星期三 10:30 ~ 11:00</h2>
+            {% endif %}
+            <div class="alert alert-warning" role="alert">
+                <strong>注意：時段結束時就必須離開，請勿遲到！</strong>
+            </div>
+            {% elif data['status'] == 'other-pickup' %}
+            <h2>種類：請人代拿</h2>
+            <h2>代領人：{{ data['helper'] }} 號</h2>
+            <div class="alert alert-warning" role="alert">
+                <strong>注意：請務必和代領者溝通！<br>請將繳費證明傳給那位幫忙拿的同學
+                </strong>
+            </div>
+            {% endif %}
+            {% if 'note' in data %}
+            <h2>備註：{{ data['note'] }}</h2>
+            {% endif %}
+        </div>
+        {% if 'needToHelp' in data %}
+        <div class="col border right">
+            <h2>需代領號碼</h2>
+            {% for i in data['needToHelp'] %}
+            <h3>{{ i }} 號</h3>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="col border right">
+            <h2>不需代領</h2>
+        </div>
+        {% endif %}
+    </div>
+</body>
+
+</html>

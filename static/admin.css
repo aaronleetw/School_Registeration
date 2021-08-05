@@ -1,0 +1,23 @@
+.row .col-3 {
+    border: 1px solid black;
+}
+
+form .row div, .row .col-3 {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button {
+    margin-top: 5px !important;
+}
+
+h3 {
+    margin-top: 15px;
+}
