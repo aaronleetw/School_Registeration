@@ -32,9 +32,9 @@
             <label for="time" class="form-label">請選擇時段</label>
             <select name="time" id="time" class="form-select">
                 <option select value="">請選擇</option>
-                <option value="early" {% if time1==17 %} disabled {%endif%}>
+                <option value="early" {% if time1>=17 %} disabled {%endif%}>
                     8/11 星期三 10:00 ~ 10:30 (還剩：{{ 17 - time1}}人)</option>
-                <option value="later" {% if time2==17 %} disabled {%endif%}>
+                <option value="later" {% if time2>=17 %} disabled {%endif%}>
                     8/11 星期三 10:30 ~ 11:00 (還剩：{{ 17 - time2}} 人)</option>
             </select>
             <div class="alert alert-warning" style="margin-top: 15px;" role="alert">
