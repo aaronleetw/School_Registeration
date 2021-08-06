@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>八平學生進校登記系統</title>
+    <title>九平學生進校登記系統</title>
     <link rel="icon" href='/static/logo.png' />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href='/static/project.css' />
@@ -10,7 +10,7 @@
 
 <body>
     <div style="width:100%;">
-        <h1>八平學生進校登記系統</h1>
+        <h1>九平學生進校登記系統</h1>
         <h2>請登入</h2>
         <hr>
     </div>
@@ -44,7 +44,7 @@
 
     <script>
         document.getElementById('cnumber').addEventListener('change', function () {
-            if (!(this.value == 31 || this.value == 34 || this.value == "")) {
+            if (!(this.value == "")) {
                 document.getElementById('studID').value = "";
                 document.getElementById('studIDInput').style.display = 'block';
             } else {
