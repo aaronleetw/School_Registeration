@@ -75,7 +75,7 @@ def newsubmit():
         db.child("Person").child(number).child("status").set("other-pickup")
         db.child("Person").child(number).child("helper").set(int(helper))
         db.child("Person").child(int(helper)).child(
-            "needToHelp").set({number: 0})
+            "needToHelp").child(number).set(0)
         send_email(str(db.child("Person").child(number).child("stud_ID").get().val(
         )) + "@st.fhjh.tp.edu.tw", "確認信", "您剛剛在八平學生進校登記系統登記在讓 " + helper + "為代領人。請務必和代領者溝通！<br> <h1>重要：請將繳費證明傳給那位幫忙拿的同學!!</h1>")
         send_email(str(db.child("Person").child(int(helper)).child("stud_ID").get().val(
