@@ -24,13 +24,15 @@
             <h2>時段：8/11 星期三 10:30 ~ 11:00</h2>
             {% endif %}
             <div class="alert alert-warning" role="alert">
-                <strong>注意：時段結束時就必須離開，請勿遲到！</strong>
+                <strong>注意：時段結束時就必須離開，請勿遲到！
+                    <br>請記得攜帶註冊費繳費收據，紙本或電子檔均可
+                </strong>
             </div>
             {% elif data['status'] == 'other-pickup' %}
             <h2>種類：請人代拿</h2>
             <h2>代領人：{{ data['helper'] }} 號</h2>
             <div class="alert alert-warning" role="alert">
-                <strong>注意：請務必和代領者溝通！<br>請將繳費證明傳給那位幫忙拿的同學
+                <strong>注意：請務必和代領者溝通！<br>請將繳費證明傳給那位幫忙拿的同學 (紙本或電子檔均可)
                 </strong>
             </div>
             {% endif %}

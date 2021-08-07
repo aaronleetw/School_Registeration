@@ -62,13 +62,13 @@ def newsubmit():
             db.child("result").child("1000").set(curr)
             db.child("Person").child(number).child("time").set(time)
             send_email(str(db.child("Person").child(number).child("stud_ID").get().val(
-            )) + "@st.fhjh.tp.edu.tw", "確認信", "您剛剛在八平學生進校登記系統登記在 8/11 星期三 10:00 ~ 10:30 自行拿取。請勿遲到！")
+            )) + "@st.fhjh.tp.edu.tw", "確認信", "您剛剛在八平學生進校登記系統登記在 8/11 星期三 10:00 ~ 10:30 自行拿取。請勿遲到！<hr>請記得攜帶註冊費繳費收據，紙本或電子檔均可")
         elif (time == 'later'):
             curr = db.child("result").child("1030").get().val() + 1
             db.child("result").child("1030").set(curr)
             db.child("Person").child(number).child("time").set(time)
             send_email(str(db.child("Person").child(number).child("stud_ID").get().val(
-            )) + "@st.fhjh.tp.edu.tw", "確認信", "您剛剛在八平學生進校登記系統登記在 8/11 星期三 10:30 ~ 11:00 自行拿取。請勿遲到！")
+            )) + "@st.fhjh.tp.edu.tw", "確認信", "您剛剛在八平學生進校登記系統登記在 8/11 星期三 10:30 ~ 11:00 自行拿取。請勿遲到！<hr>請記得攜帶註冊費繳費收據，紙本或電子檔均可")
         db.child("Person").child(number).child("status").set("self-pickup")
     elif (typeO == 'other-pickup'):
         helper = request.form['helper']
@@ -77,7 +77,7 @@ def newsubmit():
         db.child("Person").child(int(helper)).child(
             "needToHelp").child(number).set(0)
         send_email(str(db.child("Person").child(number).child("stud_ID").get().val(
-        )) + "@st.fhjh.tp.edu.tw", "確認信", "您剛剛在八平學生進校登記系統登記在讓 " + helper + "為代領人。請務必和代領者溝通！<br> <h1>重要：請將繳費證明傳給那位幫忙拿的同學!!</h1>")
+        )) + "@st.fhjh.tp.edu.tw", "確認信", "您剛剛在八平學生進校登記系統登記在讓 " + helper + "為代領人。請務必和代領者溝通！<br>重要：請將繳費證明傳給那位幫忙拿的同學!! (紙本或電子檔均可)")
         send_email(str(db.child("Person").child(int(helper)).child("stud_ID").get().val(
         )) + "@st.fhjh.tp.edu.tw", "委託代領", "剛剛 "+str(number)+"號同學 在八平學生進校登記系統登記你為代領人。請記得幫忙代領！")
     data = db.child("Person").child(number).get().val()
