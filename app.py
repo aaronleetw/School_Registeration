@@ -4,17 +4,21 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from collections import OrderedDict
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_url_path='/static')
 firebaseConfig = {
-    "apiKey": "AIzaSyDmNQPA1B_KqPc1pk0O-cvrNTTl95wYJQg",
-    "authDomain": "enter-school-9298e.firebaseapp.com",
-    "databaseURL": "https://enter-school-9298e-default-rtdb.firebaseio.com",
-    "projectId": "enter-school-9298e",
-    "storageBucket": "enter-school-9298e.appspot.com",
-    "messagingSenderId": "57868613354",
-    "appId": "1:57868613354:web:107d8ca011108a483c0993",
-    "measurementId": "G-Z3BBK6J19Q"
+    "apiKey": getenv("apiKey"),
+    "authDomain": getenv("authDomain"),
+    "databaseURL": getenv("databaseURL"),
+    "projectId": getenv("projectId"),
+    "storageBucket": getenv("storageBucket"),
+    "messagingSenderId": getenv("messagingSenderId"),
+    "appId": getenv("appId"),
+    "measurementId": getenv("measurementId")
 }
 firebase = pyrebase.initialize_app(firebaseConfig)
 db = firebase.database()
@@ -22,13 +26,12 @@ db = firebase.database()
 
 def send_email(to, subject, html_content):
     message = Mail(
-        from_email='system@em249.enter.aaronlee.tech',
+        from_email=getenv("sg_from_email"),
         to_emails=to,
         subject=subject,
-        html_content=html_content + "<hr>若你還沒有選擇進校時間，請至 <a href=\"http://enter.aaronlee.tech/\"> enter.aaronlee.tech </a> <br> 這是一封自動產生的信件，請勿回覆")
+        html_content=html_content + "<hr>若你還沒有選擇進校時間，請至 <a href=\"" + getenv("base_domain") + "\"> " + getenv("base_domain") + " </a> <br> 這是一封自動產生的信件，請勿回覆")
     try:
-        sg = SendGridAPIClient(
-            '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')
+        sg = SendGridAPIClient(getenv("sg_api_key"))
         sg.send(message)
     except Exception as e:
         print(e)
@@ -89,7 +92,7 @@ def admin():
     if request.method == 'GET':
         return render_template('adminlogin.html', failed=False)
     password = request.form['password']
-    if password == 'detective':
+    if password == getenv("admin_password"):
         early = OrderedDict()
         late = OrderedDict()
         other = OrderedDict()
@@ -120,4 +123,4 @@ def addnote():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0")
